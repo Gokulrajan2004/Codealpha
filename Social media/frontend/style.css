@@ -1,0 +1,224 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #f9fbff, #e9efff);
+  color: #333;
+}
+
+.post, .card {
+  width: 100%;
+  max-width: 650px; /* 🔼 was 500px */
+  margin-bottom: 2.5rem; /* 🔼 more space between posts */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 16px; /* 🔼 smoother rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 🔼 deeper shadow */
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem; /* 🆕 adds space inside */
+}
+
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+
+/* Top Navbar */
+.navbar {
+  width: 100%;
+  padding: 0.8rem 2rem;
+  justify-content: space-between;
+}
+
+.navbar .logo {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #222;
+}
+
+.navbar .nav-right button {
+  background: #3897f0;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+}
+.navbar .nav-right button:hover {
+  background: #2871c6;
+}
+
+
+/* Upload Card */
+.upload-card {
+  background: #fff;
+  padding: 1.5rem;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+.upload-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.upload-card input[type="text"],
+.upload-card input[type="file"] {
+  padding: 0.6rem;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  width: 100%;
+}
+.upload-card button {
+  padding: 0.6rem;
+  border: none;
+  border-radius: 4px;
+  background: #3897f0;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background .2s;
+}
+.upload-card button:hover {
+  background: #3283dc;
+}
+
+/* Feed Grid & Cards */
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1rem 2rem;
+}
+
+.feed {
+  flex: 1;
+}
+.profile-sidebar {
+  width: 250px;
+}
+
+
+@media(min-width: 700px) {
+  .feed {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.post img, .card img {
+  width: 100%;
+  height: 300px; /* fixed height for all images */
+  object-fit: cover;
+}
+.card-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.card-body h3 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.card-body p {
+  font-size: 0.9rem;
+  color: #555;
+}
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.card-actions button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color .2s;
+  color: #000;
+}
+
+/* Comments */
+.comments {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #efefef;
+}
+.comments p {
+  font-size: 0.85rem;
+  margin: 0.4rem 0;
+}
+.comments form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.comments input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+}
+.comments button {
+  padding: 0.5rem 1rem;
+  background: #3897f0;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s;
+}
+.comments button:hover {
+  background: #3283dc;
+}
+
+/* Sidebar (Profile) */
+.profile-sidebar {
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  position: sticky;
+  top: 80px;
+}
+.profile-sidebar img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 0.8rem;
+}
+.profile-sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+.profile-sidebar p {
+  font-size: 0.9rem;
+  color: #666;
+}
+.profile-sidebar button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #dbdbdb;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.profile-sidebar button:hover {
+  background: #fafafa;
+}

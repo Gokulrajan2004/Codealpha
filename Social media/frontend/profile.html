@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Social App • Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">Scimini</div>
+    <div class="nav-right">
+      <button onclick="window.location.href='index.html'">🏠 Home</button>
+      <button onclick="logout()">🚪 Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- LEFT: Your Posts -->
+    <div>
+      <div id="my-posts" class="feed"></div>
+    </div>
+
+    <!-- RIGHT: Sidebar (User Info) -->
+    
+    <aside class="profile-sidebar">
+      <img id="profilePic" src="http://localhost:5000/uploads/abc.png" alt="Profile Pic">
+      <h2 id="profileName">@loading</h2>
+      <p id="profileEmail">email@example.com</p>
+    </aside>
+     <form id="picForm" enctype="multipart/form-data">
+      <input type="file" name="profilePic" accept="image/*" required>
+      <button type="submit">Update Photo</button>
+    </form>
+
+  </div>
+
+  <script >
+    // Similar to script.js but only fetching your posts...
+      async function loadProfile() {
+      const userId = localStorage.getItem("userId");
+      if (!userId) return window.location.href = 'login.html';
+
+      // Fetch user info
+      const u = await fetch(`http://localhost:5000/api/users/${userId}`).then(r=>r.json());
+      document.getElementById('profileName').textContent = '@'+u.username;
+      document.getElementById('profileEmail').textContent = u.email;
+      document.getElementById('profilePic').src = u.profilePic || 'abc.png';  
+
+      // profilePic2.src = u.profilePic || default;
+
+      // Fetch and render your posts
+      const posts = await fetch('http://localhost:5000/api/posts/all').then(r=>r.json());
+      const my = posts.filter(p => p.userId._id === userId);
+
+      const container = document.getElementById('my-posts');
+      container.innerHTML = '';
+      my.forEach(post => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <img src="${post.imageUrl}" alt="">
+          <div class="card-body">
+            <h3>${post.caption}</h3>
+            <div class="card-actions">
+              <button onclick="likePost('${post._id}')">❤️ ${post.likes.length}</button>
+              <button disabled>💬 ${post.comments.length}</button>
+            </div>
+            <div class="comments">
+              ${post.comments.map(c => `<p><strong>@${c.userId?.username || '?'}</strong> ${c.text}</p>`).join('')}
+            </div>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+    }
+    loadProfile();
+    document.getElementById("picForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const userId = localStorage.getItem("userId");
+      const formData = new FormData(this);
+      try {
+        const res = await fetch(`http://localhost:5000/api/users/profile-pic/${userId}`, {
+          method: "PUT",
+          body: formData
+        });
+        const result = await res.json();
+        alert(result.message || "Updated!");
+        loadProfile(); // reload profile pic
+      } catch (err) {
+        alert("Error updating photo");
+      }
+    });
+
+        function logout() {
+      localStorage.removeItem("userId");
+      window.location.href = "login.html";
+    }
+  </script>
+
+</body>
+</html>

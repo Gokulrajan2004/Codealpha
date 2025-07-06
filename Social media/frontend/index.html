@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Social App • Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">Scimini</div>
+    <div class="nav-right">
+      <button onclick="window.location.href='profile.html'">👤 Profile</button>
+      <button onclick="logout()">🚪 Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- LEFT: FEED -->
+    <div>
+      <!-- Upload Card -->
+      <div class="upload-card">
+        <form id="uploadForm" enctype="multipart/form-data">
+          <input type="text" name="caption" placeholder="Write a caption..." required>
+          <input type="file" name="image" accept="image/*" required>
+          <button type="submit">Post</button>
+        </form>
+      </div>
+
+      <!-- Feed -->
+      <div id="feed" class="feed"></div>
+    </div>
+
+    <!-- RIGHT: PROFILE SIDEBAR -->
+    <aside class="profile-sidebar">
+      <img id="profilePic" src="abc.png" alt="Profile Pic" onerror="this.src='abc.png'">
+      <h2 id="loggedUser">@loading</h2>
+      <button onclick="logout()">Logout</button>
+    </aside>
+
+  </div>
+  <footer style="text-align:center; padding: 1rem; font-size: 0.8rem; color:#666;">
+  Built with ❤️ by You | © 2025 Scimini
+</footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
