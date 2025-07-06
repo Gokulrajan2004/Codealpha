@@ -1,0 +1,60 @@
+.custom-navbar {
+  background-color: #b6bdfa;
+}
+
+#navbarSupportedContent a:hover {
+  border-bottom: 2px solid black;
+}
+
+section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#home {
+  background: url(h.png);
+  background-size: cover;
+  background-position: center;
+  flex-direction: column;
+}
+
+#home h1 {
+  font-size: 100px;
+  color: #b6bdfa;
+  -webkit-text-stroke: 1px black;
+  text-shadow: 0px 1px 0px black,
+               0px 2px 0px black,
+               0px 3px 0px black,
+               0px 4px 0px black,
+               0px 5px 0px black,
+               0px 6px 0px black;
+}
+
+#home p {
+  font-size: 18px;
+}
+
+#women {
+  background: #d7bde2;
+}
+
+#kids {
+  background: lightblue;
+}
+
+#men {
+  background: #e5e5e5;
+}
+
+.box {
+  background: #b6bdfa;
+  margin-top: 10px;
+}
+
+#contact input,
+#contact textarea {
+  margin: 10px 0px;
+}
